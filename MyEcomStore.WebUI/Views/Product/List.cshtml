@@ -1,0 +1,17 @@
+﻿@model PagedList<MyEcomStore.Domain.Entities.Product>
+@using PagedList;
+@using PagedList.Mvc;
+
+@{
+    ViewBag.Title = "Products";
+}
+
+@foreach (var p in Model)
+{
+    @Html.Partial("ProductSummary", p);
+}
+
+<div class="btn-group pull-right">
+    @Html.PagedListPager(Model, page => Url.Action("List", new { page, pageSize = Model.PageSize }))
+    Showing @Model.FirstItemOnPage to @Model.LastItemOnPage of @Model.TotalItemCount Products
+</div>
